@@ -1,0 +1,60 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".MainActivity" >
+
+    <!--  start timer button -->
+    
+    <!-- stop timer button -->
+    
+    <!-- timer -->
+
+    <Button
+        android:id="@id/selectStatsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/timerButton"
+        android:text="@string/select_stats" />
+
+    <Button
+        android:id="@id/timerButton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/selectStatsButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="82dp"
+        android:text="@string/start_timer" />
+    
+    <Chronometer
+        android:id="@id/awesomeChronoMeter"    
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/saveTimeButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp" />
+
+    <Button
+        android:id="@id/saveTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/timerButton"
+        android:layout_below="@id/timerButton"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="23dp"
+        android:text="@string/save_time" />
+
+    <Button
+        android:id="@id/resetTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/saveTimeButton"
+        android:layout_marginLeft="31dp"
+        android:layout_toRightOf="@id/awesomeChronoMeter"
+        android:text="@string/reset_timer" />
+
+</RelativeLayout>

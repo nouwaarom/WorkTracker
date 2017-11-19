@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- this is a file to store all the ID's of UI elements-->
+    
+    <!-- generic test textView -->
+    <item name="testTextView" type="id" />
+    
+    <!-- main menu -->
+    <item name="awesomeChronoMeter" type="id" />
+    <item name="selectStatsButton" type="id" />
+    <item name="timerButton" type="id" />
+    <item name="saveTimeButton" type="id" />
+    <item name="resetTimeButton" type="id" />
+    
+    <!-- stats menu -->
+    <item name="simplePieChart" type="id" />
+    
+    <!-- save time menu -->
+    <item name="saveButton" type="id" />
+    <item name="enterTaskEditText" type="id" />
+    <item name="timer" type="id" />
+    
+</resources>
