@@ -1,44 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
- 	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <data>
+    <variable
+      name="time"
+      type="com.tmatix.worker.TimeData"/>
+    <variable
+      name="description"
+      type="com.tmatix.worker.WorkDescriptionData"/>
+    <variable
+      name="presenter"
+      type="com.tmatix.worker.SaveActivityPresenter"/>
+  </data>
+
+  <RelativeLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".SaveActivity" >
+    tools:context=".SaveActivity">
 
-  <Button
-    android:id="@id/saveButton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="78dp"
-    android:layout_alignParentBottom="true"
-    android:layout_centerHorizontal="true"
-    android:text="@string/save_time"
-    android:textColor="@android:color/white"/>
+    <Button
+      android:id="@id/saveButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="78dp"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true"
+      android:text="@string/save_time"
+      android:textColor="@android:color/white"
+      android:onClick="@{() -> presenter.onSave() }"/>
 
     <TextView
-        android:id="@id/timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/enterTaskEditText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:text="@string/time"
-        android:textSize="20sp" />
+      android:id="@id/timer"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="30dp"
+      android:layout_above="@id/enterTaskEditText"
+      android:layout_centerHorizontal="true"
+      android:text="@{time.time}"
+      android:textSize="20sp"/>
 
     <EditText
-        android:id="@id/enterTaskEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/saveButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="34dp"
-        android:ems="10"
-        android:hint="@string/enter_task_name"
-        android:inputType="text" >
+      android:id="@id/enterTaskEditText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="34dp"
+      android:layout_above="@id/saveButton"
+      android:layout_centerHorizontal="true"
+      android:ems="10"
+      android:hint="@string/enter_task_name"
+      android:inputType="text"
+      android:text="@={description.title}"
+      android:textColor="@android:color/white">
 
-        <requestFocus />
+      <requestFocus/>
     </EditText>
 
-</RelativeLayout>
+  </RelativeLayout>
+</layout>
