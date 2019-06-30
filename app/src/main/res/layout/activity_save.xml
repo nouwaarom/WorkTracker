@@ -7,14 +7,15 @@
     android:orientation="horizontal"
     tools:context=".SaveActivity" >
 
-    <Button
-        android:id="@id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="78dp"
-        android:text="@string/save_time" />
+  <Button
+    android:id="@id/saveButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="78dp"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:text="@string/save_time"
+    android:textColor="@android:color/white"/>
 
     <TextView
         android:id="@id/timer"

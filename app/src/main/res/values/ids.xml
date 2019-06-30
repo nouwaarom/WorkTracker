@@ -19,5 +19,6 @@
     <item name="saveButton" type="id" />
     <item name="enterTaskEditText" type="id" />
     <item name="timer" type="id" />
-    
+    <item name="activityStatsTitle" type="id"/>
+
 </resources>
