@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.worker"
+    package="com.tmatix.worker"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.worker.MainActivity"
+            android:name="com.tmatix.worker.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="The Stats Activity" android:name=".StatsActivity"></activity>
-        <activity android:label="The Save Activity." android:name=".SaveActivity"></activity>
+        <activity android:label="The Stats Activity" android:name="com.tmatix.worker.StatsActivity"></activity>
+        <activity android:label="The Save Activity." android:name="com.tmatix.worker.SaveActivity"></activity>
     </application>
 
 </manifest>
