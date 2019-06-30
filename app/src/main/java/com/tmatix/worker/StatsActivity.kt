@@ -42,7 +42,7 @@ class StatsActivity : Activity() {
             formatter.add(SegmentFormatter(null))
 
             //get the last item of the list and set the random color
-            formatter[formatter.size - 1].fillPaint.color = rnd.nextInt()
+            formatter[formatter.size - 1].fillPaint.color = Color.HSVToColor(floatArrayOf(rnd.nextFloat()*360, 1.0f, 0.8f))
 
             //add the segment to the pie
             pie.addSeries(segments[segments.size - 1], formatter[segments.size - 1])
