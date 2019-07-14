@@ -1,7 +1,7 @@
 package com.tmatix.worker
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
 
 /**
  * @author Elbert van de Put <elbert@amber.team>

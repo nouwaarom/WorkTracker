@@ -3,14 +3,8 @@ package com.tmatix.worker
 import android.app.Activity
 
 import android.os.Bundle
-import android.content.SharedPreferences
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 
-import android.view.View
-
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Button
 import com.tmatix.worker.databinding.ActivitySaveBinding
 
 /**

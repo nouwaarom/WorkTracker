@@ -12,25 +12,25 @@
     
     <!-- timer -->
 
-    <Button
+    <com.google.android.material.button.MaterialButton
       android:id="@id/selectStatsButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="30dp"
       android:layout_alignParentTop="true"
-      android:layout_toRightOf="@id/timerButton"
+      android:layout_marginEnd="30dp"
+      android:layout_alignParentEnd="true"
       android:text="@string/select_stats"
-      android:textColor="@android:color/white"/>
+      android:textSize="16sp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
       android:id="@id/timerButton"
       android:layout_width="150dp"
       android:layout_height="150dp"
       android:layout_marginTop="82dp"
       android:layout_below="@id/selectStatsButton"
       android:layout_centerHorizontal="true"
-      android:text="@string/start_timer"
-      android:textColor="@android:color/white"/>
+      android:text="@string/start_timer" />
     
     <Chronometer
         android:id="@id/awesomeChronoMeter"    
@@ -40,25 +40,25 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
       android:id="@id/saveTimeButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="23dp"
-      android:layout_marginRight="50dp"
-      android:layout_alignRight="@id/timerButton"
+      android:layout_marginTop="24dp"
+      android:layout_marginEnd="50dp"
+      android:layout_alignEnd="@id/timerButton"
       android:layout_below="@id/timerButton"
       android:text="@string/save_time"
-      android:textColor="@android:color/white"/>
+      android:textSize="16sp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
       android:id="@id/resetTimeButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginLeft="31dp"
+      android:layout_marginStart="31dp"
       android:layout_alignTop="@id/saveTimeButton"
-      android:layout_toRightOf="@id/awesomeChronoMeter"
+      android:layout_toEndOf="@id/awesomeChronoMeter"
       android:text="@string/reset_timer"
-      android:textColor="@android:color/white"/>
+      android:textSize="16sp" />
 
 </RelativeLayout>
