@@ -16,9 +16,18 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"/>
 
+  <Button
+      android:id="@+id/clearButton"
+      android:layout_alignParentEnd="true"
+      android:layout_marginEnd="40dp"
+      android:layout_below="@id/activityStatsTitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Clear"/>
+
   <com.androidplot.pie.PieChart
     android:id="@id/simplePieChart"
-    android:layout_below="@id/activityStatsTitle"
+    android:layout_below="@id/clearButton"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"/>
 
