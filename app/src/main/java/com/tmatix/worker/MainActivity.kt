@@ -35,24 +35,28 @@ class MainActivity : Activity() {
         //add an action to the start button click
         timerButton.setOnClickListener { v ->
             val b = v as Button
-            if (b.text == getString(R.string.stop_timer)) {
-                timeWhenStopped = chronometer.base - SystemClock.elapsedRealtime()
-                chronometer.stop()
+            when (b.text) {
+                getString(R.string.stop_timer) -> {
+                    timeWhenStopped = chronometer.base - SystemClock.elapsedRealtime()
+                    chronometer.stop()
 
-                b.setText(R.string.continue_timer)
-                saveButton.visibility = View.VISIBLE
-                resetButton.visibility = View.VISIBLE
-            } else if (b.text == getString(R.string.continue_timer)) {
-                chronometer.base = SystemClock.elapsedRealtime() + timeWhenStopped
-                chronometer.start()
+                    b.setText(R.string.continue_timer)
+                    saveButton.visibility = View.VISIBLE
+                    resetButton.visibility = View.VISIBLE
+                }
+                getString(R.string.continue_timer) -> {
+                    chronometer.base = SystemClock.elapsedRealtime() + timeWhenStopped
+                    chronometer.start()
 
-                b.setText(R.string.stop_timer)
-                saveButton.visibility = View.INVISIBLE
-                resetButton.visibility = View.INVISIBLE
-            } else if (b.text == getString(R.string.start_timer)) {
-                chronometer.base = SystemClock.elapsedRealtime()
-                chronometer.start()
-                b.setText(R.string.stop_timer)
+                    b.setText(R.string.stop_timer)
+                    saveButton.visibility = View.INVISIBLE
+                    resetButton.visibility = View.INVISIBLE
+                }
+                getString(R.string.start_timer) -> {
+                    chronometer.base = SystemClock.elapsedRealtime()
+                    chronometer.start()
+                    b.setText(R.string.stop_timer)
+                }
             }
         }
 
@@ -69,8 +73,8 @@ class MainActivity : Activity() {
         //add an action to the reset button click
         resetButton.setOnClickListener {
             chronometer.base = SystemClock.elapsedRealtime()
-            chronometer.start()
-            timerButton.setText(R.string.stop_timer)
+            chronometer.stop()
+            timerButton.setText(R.string.start_timer)
             saveButton.visibility = View.INVISIBLE
             resetButton.visibility = View.INVISIBLE
         }

@@ -7,58 +7,67 @@
     tools:context=".MainActivity" >
 
     <!--  start timer button -->
-    
+
     <!-- stop timer button -->
-    
+
     <!-- timer -->
 
     <com.google.android.material.button.MaterialButton
-      android:id="@id/selectStatsButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="30dp"
-      android:layout_alignParentTop="true"
-      android:layout_marginEnd="30dp"
-      android:layout_alignParentEnd="true"
-      android:text="@string/select_stats"
-      android:textSize="16sp" />
-
-    <com.google.android.material.button.MaterialButton
-      android:id="@id/timerButton"
-      android:layout_width="150dp"
-      android:layout_height="150dp"
-      android:layout_marginTop="82dp"
-      android:layout_below="@id/selectStatsButton"
-      android:layout_centerHorizontal="true"
-      android:text="@string/start_timer" />
-    
-    <Chronometer
-        android:id="@id/awesomeChronoMeter"    
+        android:id="@id/selectStatsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/saveTimeButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/select_stats"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@id/timerButton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/selectStatsButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="120dp"
+        android:text="@string/start_timer"
+        android:textColor="#000000" />
 
-    <com.google.android.material.button.MaterialButton
-      android:id="@id/saveTimeButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="24dp"
-      android:layout_marginEnd="50dp"
-      android:layout_alignEnd="@id/timerButton"
-      android:layout_below="@id/timerButton"
-      android:text="@string/save_time"
-      android:textSize="16sp" />
+    <Chronometer
+        android:id="@id/awesomeChronoMeter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/saveResetLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textSize="34sp" />
 
-    <com.google.android.material.button.MaterialButton
-      android:id="@id/resetTimeButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="31dp"
-      android:layout_alignTop="@id/saveTimeButton"
-      android:layout_toEndOf="@id/awesomeChronoMeter"
-      android:text="@string/reset_timer"
-      android:textSize="16sp" />
+    <LinearLayout
+        android:id="@+id/saveResetLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timerButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@id/saveTimeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save_time"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@id/resetTimeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/reset_timer"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 </RelativeLayout>
