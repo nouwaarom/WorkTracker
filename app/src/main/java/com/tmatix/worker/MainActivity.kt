@@ -59,17 +59,13 @@ class MainActivity : Activity() {
 
             val saveIntent = Intent(v.context, SaveActivity::class.java)
             saveIntent.putExtras(bundle)
+
+            resetTimer()
             v.context.startActivity(saveIntent)
         }
 
         //add an action to the reset button click
-        resetButton.setOnClickListener {
-            chronometer.base = SystemClock.elapsedRealtime()
-            chronometer.stop()
-            timerButton.setText(R.string.start_timer)
-            saveButton.visibility = View.INVISIBLE
-            resetButton.visibility = View.INVISIBLE
-        }
+        resetButton.setOnClickListener { resetTimer() }
 
         //add an action to the statistics button click
         statsButton.setOnClickListener { v ->
@@ -84,7 +80,7 @@ class MainActivity : Activity() {
     private fun createNotificationChannel() {
         val name = getString(R.string.channel_name)
         val descriptionText = getString(R.string.channel_description)
-        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val importance = NotificationManager.IMPORTANCE_LOW
         val channel = NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance).apply {
             description = descriptionText
         }
@@ -126,6 +122,20 @@ class MainActivity : Activity() {
         removeTimerNotification()
     }
 
+    private fun resetTimer() {
+        val chronometer = findViewById<Chronometer>(R.id.awesomeChronoMeter)
+        chronometer.base = SystemClock.elapsedRealtime()
+        chronometer.stop()
+
+        val timerButton = findViewById<Button>(R.id.timerButton)
+        timerButton.setText(R.string.start_timer)
+
+        val saveButton = findViewById<Button>(R.id.saveTimeButton)
+        val resetButton = findViewById<Button>(R.id.resetTimeButton)
+        saveButton.visibility = View.INVISIBLE
+        resetButton.visibility = View.INVISIBLE
+    }
+
     private fun removeTimerNotification() {
         val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.cancel(0)
@@ -141,6 +151,8 @@ class MainActivity : Activity() {
             .setContentTitle("Work in progress")
             .setSmallIcon(R.drawable.ic_wrench)
             .addAction(R.drawable.baseline_pause_24, "PAUSE", pendingIntent)
+            .setStyle(Notification.MediaStyle()
+                .setShowActionsInCompactView(0 /* #1: pause button \*/))
             .build()
 
         val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
