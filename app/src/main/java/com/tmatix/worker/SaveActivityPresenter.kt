@@ -11,14 +11,16 @@ class SaveActivityPresenter(val view: SaveActivityView, val activity: Activity) 
         val timeSeconds = view.time.getTimeInSeconds()
 
         //save the data only if we filled in the tag
-        if (!description.isEmpty()) {
-            //save the time and timeTag
-            val timeStorage = activity.getSharedPreferences("nouwaarom_worker_prefs", 0)
-            val editor = timeStorage.edit()
-            editor.putInt(description, timeSeconds)
-            editor.apply()
-
-            activity.finish()
+        if (description.isEmpty()) {
+            return;
         }
+
+        //save the time and timeTag
+        val timeStorage = activity.getSharedPreferences("nouwaarom_worker_prefs", 0)
+        val editor = timeStorage.edit()
+        editor.putInt(description, timeSeconds)
+        editor.apply()
+
+        activity.finish()
     }
 }

@@ -16,6 +16,8 @@
     <string name="select_stats">Results</string>
     <string name="save_time">Save time</string>
     <string name="enter_task_name">Task you were busy with?</string>
-  <string name="ActivityStatsTitle">Spending by Task</string>
+    <string name="ActivityStatsTitle">Spending by Task</string>
 
+    <string name="channel_name">Worker Notifications</string>
+    <string name="channel_description">Timer notifications for the worker app</string>
 </resources>
