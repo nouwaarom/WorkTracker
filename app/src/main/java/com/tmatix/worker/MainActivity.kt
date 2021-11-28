@@ -22,8 +22,10 @@ class MainActivity : Activity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        when (intent.getStringExtra("action")) {
-            "stop" -> stopTimer()
+        val action = intent.getStringExtra("action")
+        when (action) {
+            "pause" -> stopTimer()
+            "continue" -> continueTimer()
         }
     }
 
@@ -47,7 +49,7 @@ class MainActivity : Activity() {
             val b = v as Button
             when (b.text) {
                 getString(R.string.stop_timer) -> stopTimer()
-                getString(R.string.continue_timer) -> startTimer(SystemClock.elapsedRealtime() + timeWhenStopped)
+                getString(R.string.continue_timer) -> continueTimer()
                 getString(R.string.start_timer) -> startTimer(SystemClock.elapsedRealtime())
             }
         }
@@ -77,6 +79,13 @@ class MainActivity : Activity() {
         createNotificationChannel()
     }
 
+    override fun onStop() {
+        super.onStop()
+        // We remove our notification in order to not leave dangling notifications
+        val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.cancelAll()
+    }
+
     private fun createNotificationChannel() {
         val name = getString(R.string.channel_name)
         val descriptionText = getString(R.string.channel_description)
@@ -84,6 +93,7 @@ class MainActivity : Activity() {
         val channel = NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance).apply {
             description = descriptionText
         }
+        channel.setSound(null, null)
         // Register the channel with the system
         val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
@@ -102,7 +112,11 @@ class MainActivity : Activity() {
         saveButton.visibility = View.INVISIBLE
         resetButton.visibility = View.INVISIBLE
 
-        showTimerNotification()
+        showPauseTimerNotification()
+    }
+
+    private fun continueTimer() {
+        startTimer(SystemClock.elapsedRealtime() + timeWhenStopped)
     }
 
     private fun stopTimer() {
@@ -118,8 +132,8 @@ class MainActivity : Activity() {
         saveButton.visibility = View.VISIBLE
         resetButton.visibility = View.VISIBLE
 
-        // Remove the timer notification as the timer is not running
-        removeTimerNotification()
+        // Replace the pause timer notification by a continue timer notification.
+        showContinueTimerNotification()
     }
 
     private fun resetTimer() {
@@ -134,6 +148,9 @@ class MainActivity : Activity() {
         val resetButton = findViewById<Button>(R.id.resetTimeButton)
         saveButton.visibility = View.INVISIBLE
         resetButton.visibility = View.INVISIBLE
+
+        // The timer is not running, so we remove the notification.
+        removeTimerNotification()
     }
 
     private fun removeTimerNotification() {
@@ -141,10 +158,28 @@ class MainActivity : Activity() {
         notificationManager.cancel(0)
     }
 
-    private fun showTimerNotification() {
+    private fun showContinueTimerNotification() {
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("action", "stop")
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+        intent.putExtra("action", "continue")
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+
+        val notification = Notification.Builder(
+            this, NOTIFICATION_CHANNEL_ID)
+            .setContentTitle("Taking a break")
+            .setSmallIcon(R.drawable.ic_wrench)
+            .addAction(R.drawable.baseline_play_arrow_24, "CONTINUE", pendingIntent)
+            .setStyle(Notification.MediaStyle()
+                .setShowActionsInCompactView(0)) // Draws the play button at the right side of the notification.
+            .build()
+
+        val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(0, notification)
+    }
+
+    private fun showPauseTimerNotification() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("action", "pause")
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT)
 
         val notification = Notification.Builder(
             this, NOTIFICATION_CHANNEL_ID)
@@ -152,7 +187,7 @@ class MainActivity : Activity() {
             .setSmallIcon(R.drawable.ic_wrench)
             .addAction(R.drawable.baseline_pause_24, "PAUSE", pendingIntent)
             .setStyle(Notification.MediaStyle()
-                .setShowActionsInCompactView(0 /* #1: pause button \*/))
+                .setShowActionsInCompactView(0)) // Draws the pause action at the right side of the notification.
             .build()
 
         val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
